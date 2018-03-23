@@ -1,0 +1,3 @@
+[submodule "se-shop-android"]
+	path = se-shop-android
+	url = https://github.com/acterics/se-shop-android.git
