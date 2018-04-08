@@ -1,10 +1,9 @@
-const showdown = require("showdown");
 const gulp = require("gulp");
 const { Transform } = require("stream");
 const fs = require("fs");
 const path = require("path");
-
-const converter = new showdown.Converter();
+var Remarkable = require("remarkable");
+var md = new Remarkable();
 
 exports.buildDocs = function buildDocs() {
   return gulp
@@ -23,9 +22,7 @@ exports.buildDocs = function buildDocs() {
           fs.readFile("./docs-template.html", (error, content) => {
             if (error) throw new Error(error);
 
-            console.log(content);
-
-            const htmlContent = converter.makeHtml(fileContent);
+            const htmlContent = md.render(fileContent);
 
             const resultContent = content
               .toString()
