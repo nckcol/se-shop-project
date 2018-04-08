@@ -1,0 +1,20 @@
+{
+  "name": "se-shop-project",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "showdown": "^1.8.6",
+    "stream": "^0.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-docs": "gulp buildDocs"
+  },
+  "author": "",
+  "license": "ISC"
+}
