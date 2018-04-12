@@ -1,0 +1,829 @@
+{
+  "list": [
+    {
+      "text": "Мобільна версія відображення товарів",
+      "duration": "11",
+      "asignee": "",
+      "position": 792
+    },
+    {
+      "text": "Головний екран",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 816
+    },
+    {
+      "text": "Екран каталогу товарів, пагінація",
+      "duration": "4",
+      "asignee": "lolego1601",
+      "position": 840
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 696
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 720
+    },
+    { "text": "Розробка", "duration": "13", "asignee": "", "position": 744 },
+    {
+      "text": "Відображення, фільтрація, детальний перегляд товарів",
+      "duration": "11",
+      "asignee": "",
+      "position": 768
+    },
+    {
+      "text": "Налаштування системи Jenkins на тестовому сервері",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 624
+    },
+    {
+      "text": "Створення потрібних хуків на коміти репозиторію",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 648
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 672
+    },
+    {
+      "text": "Розгортання репозиторію",
+      "duration": "1",
+      "asignee": "не назначен",
+      "position": 528
+    },
+    {
+      "text":
+        "Вибір способу доставки ПО до кінцевого користувача. Налаштування CI/CD",
+      "duration": "2",
+      "asignee": "",
+      "position": 552
+    },
+    {
+      "text":
+        "Автоматичне завантаження версії додатку до внутрішньої системи дистрибуції",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 576
+    },
+    {
+      "text": "Автоматизація тестування на віддаленому сервері",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 600
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 432
+    },
+    { "text": "Інтеграція", "duration": "5", "asignee": "", "position": 456 },
+    {
+      "text": "Вибір технологій. Налаштування засобів розробки",
+      "duration": "2",
+      "asignee": "не назначен",
+      "position": 480
+    },
+    {
+      "text": "Налаштування тестового серверу",
+      "duration": "1",
+      "asignee": "Roman Swan",
+      "position": 504
+    },
+    {
+      "text": "Веб-інтерфейс",
+      "duration": "4",
+      "asignee": "Никита Попов",
+      "position": 336
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 360
+    },
+    {
+      "text": "Проектування та узгодження API",
+      "duration": "5",
+      "asignee": "не назначен",
+      "position": 384
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 408
+    },
+    {
+      "text": "Розробка дизайн-системи",
+      "duration": "2",
+      "asignee": "Никита Попов",
+      "position": 264
+    },
+    {
+      "text": "Розробка частин інтерфейсу",
+      "duration": "5",
+      "asignee": "",
+      "position": 288
+    },
+    {
+      "text": "Розробка мобільної версії частин інтерфейсу",
+      "duration": "5",
+      "asignee": "lolego1601",
+      "position": 312
+    },
+    {
+      "text": "Організаця описаних даних у таблиці",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 168
+    },
+    {
+      "text": "Встановлення зв'язків та відношень між таблицями",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 192
+    },
+    {
+      "text": "Нормалізація та оптимізація бази даних",
+      "duration": "1",
+      "asignee": "Roman Swan",
+      "position": 216
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 240
+    },
+    {
+      "text": "Опис даних та обмежень",
+      "duration": "2",
+      "asignee": "не назначен",
+      "position": 72
+    },
+    {
+      "text": "Визначення бізнес логіки",
+      "duration": "3",
+      "asignee": "не назначен",
+      "position": 96
+    },
+    {
+      "text": "Проектування бази даних",
+      "duration": "5",
+      "asignee": "",
+      "position": 120
+    },
+    {
+      "text": "Визначення мети й призначення бази даних",
+      "duration": "1",
+      "asignee": "Roman Swan",
+      "position": 144
+    },
+    {
+      "text": "Общая продолжительность",
+      "duration": "47",
+      "asignee": "",
+      "position": 0
+    },
+    { "text": "RTFMarket", "duration": "47", "asignee": "", "position": 24 },
+    { "text": "Проектування", "duration": "15", "asignee": "", "position": 48 },
+    {
+      "text": "Сторінка корзини",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 1296
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1272
+    },
+    {
+      "text": "Екран статусу замовлення",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 1248
+    },
+    {
+      "text": "Екрани оформлення замовлення",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 1224
+    },
+    {
+      "text": "Мобільна версія замовлення товарів",
+      "duration": "9",
+      "asignee": "",
+      "position": 1176
+    },
+    {
+      "text": "Екран корзини",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 1200
+    },
+    {
+      "text": "Замовлення товарів",
+      "duration": "9",
+      "asignee": "",
+      "position": 1152
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1128
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1104
+    },
+    {
+      "text": "Фільтрація товарів за різними ознаками",
+      "duration": "4",
+      "asignee": "не назначен",
+      "position": 1080
+    },
+    {
+      "text": "Детальна інформація про товар",
+      "duration": "4",
+      "asignee": "не назначен",
+      "position": 1056
+    },
+    {
+      "text": "Весь список товарів",
+      "duration": "3",
+      "asignee": "не назначен",
+      "position": 1032
+    },
+    {
+      "text": "API для товарів",
+      "duration": "11",
+      "asignee": "",
+      "position": 1008
+    },
+    {
+      "text": "Фільтрація каталогу",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 984
+    },
+    {
+      "text": "Сторінка товару",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 960
+    },
+    {
+      "text": "Сторінка каталогу товарів, пагінація",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 936
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 912
+    },
+    {
+      "text": "Екран товару",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 888
+    },
+    {
+      "text": "Фільтрація та сортування каталогу",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 864
+    },
+    {
+      "text": "Екран каталогу товарів, пагінація",
+      "duration": "4",
+      "asignee": "lolego1601",
+      "position": 840
+    },
+    {
+      "text": "Головний екран",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 816
+    },
+    {
+      "text": "Мобільна версія відображення товарів",
+      "duration": "11",
+      "asignee": "",
+      "position": 792
+    },
+    {
+      "text": "Сторінка оформлення замовлення",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 1320
+    },
+    {
+      "text": "Повідомлення про успішне оформлення",
+      "duration": "1",
+      "asignee": "не назначен",
+      "position": 1344
+    },
+    {
+      "text": "API для проведення та оформлення замовлень",
+      "duration": "8",
+      "asignee": "",
+      "position": 1368
+    },
+    {
+      "text": "Створення нового замовлення",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 1392
+    },
+    {
+      "text": "Оформлення замовлення",
+      "duration": "4",
+      "asignee": "Roman Swan",
+      "position": 1416
+    },
+    {
+      "text": "Поточний стан активних замовлень",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 1440
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1464
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1488
+    },
+    {
+      "text": "Авторизація, реєстрація та профіль користувача",
+      "duration": "10",
+      "asignee": "",
+      "position": 1512
+    },
+    {
+      "text": "Сторінка авторизації та реєстрації",
+      "duration": "2",
+      "asignee": "Никита Попов",
+      "position": 1536
+    },
+    {
+      "text": "Сторінка профілю користувача",
+      "duration": "7",
+      "asignee": "",
+      "position": 1560
+    },
+    {
+      "text": "Історія замовлень",
+      "duration": "3",
+      "asignee": "Никита Попов",
+      "position": 1584
+    },
+    {
+      "text": "Інформація про користувача",
+      "duration": "2",
+      "asignee": "Никита Попов",
+      "position": 1608
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1632
+    },
+    {
+      "text": "Мобільна версія авторизації, реєстрації та профілю користувача",
+      "duration": "10",
+      "asignee": "",
+      "position": 1656
+    },
+    {
+      "text": "Сторінка профілю користувача",
+      "duration": "7",
+      "asignee": "",
+      "position": 1560
+    },
+    {
+      "text": "Історія замовлень",
+      "duration": "3",
+      "asignee": "Никита Попов",
+      "position": 1584
+    },
+    {
+      "text": "Інформація про користувача",
+      "duration": "2",
+      "asignee": "Никита Попов",
+      "position": 1608
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1632
+    },
+    {
+      "text": "Мобільна версія авторизації, реєстрації та профілю користувача",
+      "duration": "10",
+      "asignee": "",
+      "position": 1656
+    },
+    {
+      "text": "Екран авторизації",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 1680
+    },
+    {
+      "text": "Екран реєстрації та відновлення паролю",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 1704
+    },
+    {
+      "text": "Екран персонального кабінету користувача",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 1728
+    },
+    {
+      "text": "Екран історії замовлень користувача",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 1752
+    },
+    {
+      "text": "Обробка стану авторизації по всьому додатку",
+      "duration": "2",
+      "asignee": "lolego1601",
+      "position": 1776
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1800
+    },
+    {
+      "text": "Бекенд складова реєстрації, авторизації та профілю користувача",
+      "duration": "10",
+      "asignee": "",
+      "position": 1824
+    },
+    {
+      "text": "Історія замовлень",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 1848
+    },
+    {
+      "text": "Детальна інформація про користувача",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 1872
+    },
+    {
+      "text": "Система реєстрації",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 1896
+    },
+    {
+      "text": "Система авторизації",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 1920
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1944
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1968
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1992
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 2016
+    },
+    { "text": "Тестування", "duration": "10", "asignee": "", "position": 2040 },
+    {
+      "text": "Покриття системи тестами",
+      "duration": "10",
+      "asignee": "",
+      "position": 2064
+    },
+    {
+      "text": "UNIT-тестування фронтенду",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 2088
+    },
+    {
+      "text": "Регресивне тестування фронтенду",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 2112
+    },
+    {
+      "text": "UNIT-тестування додатку для Android",
+      "duration": "4",
+      "asignee": "lolego1601",
+      "position": 2136
+    },
+    {
+      "text": "UI-тестування додатку для Android",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 2160
+    },
+    {
+      "text": "Інтеграційне тестування додатку для Android",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 2184
+    },
+    {
+      "text": "UNIT-тестування бекенду",
+      "duration": "4",
+      "asignee": "Roman Swan",
+      "position": 2208
+    },
+    {
+      "text": "Інтеграційне тестування бекенду",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 2232
+    },
+    {
+      "text": "Функціональне тестування системи",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 2256
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2280
+    },
+    {
+      "text": "Ручне тестування системи",
+      "duration": "1",
+      "asignee": "",
+      "position": 2304
+    },
+    {
+      "text": "Ручне тестування додатку для Android",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 2328
+    },
+    {
+      "text": "Тестування сторінок сайту",
+      "duration": "1",
+      "asignee": "Никита Попов",
+      "position": 2352
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2376
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2400
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 2424
+    },
+    {
+      "text": "Детальна інформація про користувача",
+      "duration": "2",
+      "asignee": "Roman Swan",
+      "position": 1872
+    },
+    {
+      "text": "Система реєстрації",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 1896
+    },
+    {
+      "text": "Система авторизації",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 1920
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1944
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1968
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 1992
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 2016
+    },
+    { "text": "Тестування", "duration": "10", "asignee": "", "position": 2040 },
+    {
+      "text": "Покриття системи тестами",
+      "duration": "10",
+      "asignee": "",
+      "position": 2064
+    },
+    {
+      "text": "UNIT-тестування фронтенду",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 2088
+    },
+    {
+      "text": "Регресивне тестування фронтенду",
+      "duration": "5",
+      "asignee": "Никита Попов",
+      "position": 2112
+    },
+    {
+      "text": "UNIT-тестування додатку для Android",
+      "duration": "4",
+      "asignee": "lolego1601",
+      "position": 2136
+    },
+    {
+      "text": "UI-тестування додатку для Android",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 2160
+    },
+    {
+      "text": "Інтеграційне тестування додатку для Android",
+      "duration": "3",
+      "asignee": "lolego1601",
+      "position": 2184
+    },
+    {
+      "text": "UNIT-тестування бекенду",
+      "duration": "4",
+      "asignee": "Roman Swan",
+      "position": 2208
+    },
+    {
+      "text": "Інтеграційне тестування бекенду",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 2232
+    },
+    {
+      "text": "Функціональне тестування системи",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 2256
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2280
+    },
+    {
+      "text": "Ручне тестування системи",
+      "duration": "1",
+      "asignee": "",
+      "position": 2304
+    },
+    {
+      "text": "Ручне тестування додатку для Android",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 2328
+    },
+    {
+      "text": "Тестування сторінок сайту",
+      "duration": "1",
+      "asignee": "Никита Попов",
+      "position": 2352
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2376
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2400
+    },
+    {
+      "text": "Новий етап",
+      "duration": "",
+      "asignee": "не назначен",
+      "position": 2424
+    },
+    { "text": "Розгортання", "duration": "4", "asignee": "", "position": 2448 },
+    {
+      "text": "Проектування та налаштування production інфраструктури",
+      "duration": "1",
+      "asignee": "",
+      "position": 2472
+    },
+    {
+      "text": "Налаштування проміжного front-end серверу на node.js",
+      "duration": "1",
+      "asignee": "не назначен",
+      "position": 2496
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2520
+    },
+    {
+      "text": "Завантаження додатку Android у Google Play",
+      "duration": "1",
+      "asignee": "lolego1601",
+      "position": 2544
+    },
+    {
+      "text": "Розгортання проекту",
+      "duration": "3",
+      "asignee": "Roman Swan",
+      "position": 2568
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2592
+    },
+    {
+      "text": "+ Добавить задачу+ Добавить этап",
+      "duration": "",
+      "asignee": "",
+      "position": 2616
+    },
+    {
+      "text": "+ Добавить новый проект",
+      "duration": "",
+      "asignee": "",
+      "position": 2640
+    }
+  ]
+}
