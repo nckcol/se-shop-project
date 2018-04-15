@@ -3,7 +3,7 @@ const { Transform } = require("stream");
 const fs = require("fs");
 const path = require("path");
 var Remarkable = require("remarkable");
-var md = new Remarkable();
+var md = new Remarkable({ html: true });
 
 exports.buildDocs = function buildDocs() {
   return gulp
