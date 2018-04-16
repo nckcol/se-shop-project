@@ -4,7 +4,7 @@
 
 ### Overview
 
-1.  [Proposal](#1-proposal)
+1.  [Proposal](#1-proposal) (5.5 / 6)
 1.  [Management](#2-management)
 1.  [Requirements](#3-requirements)
 1.  [Design](#4-design)
