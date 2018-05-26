@@ -392,19 +392,18 @@ paths:
         - user
       summary: Logs user into the system
       operationId: loginUser
-      parameters:
-        - name: username
-          in: query
-          description: The user name for login
-          required: true
-          schema:
-            type: string
-        - name: password
-          in: query
-          description: The password for login in clear text
-          required: true
-          schema:
-            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user name for login
+                password:
+                  type: string
+                  description: The password for login in clear text
       responses:
         '200':
           description: successful operation
