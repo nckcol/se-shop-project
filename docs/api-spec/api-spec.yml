@@ -214,6 +214,26 @@ paths:
       responses:
         '200':
           description: Success product deleting from cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: Product with given slug not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
     put:
       parameters:
         - name: token
@@ -227,6 +247,26 @@ paths:
       responses:
         '200':
           description: Success product count changing in cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: Product with given slug not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
   '/order/':
     post:
       parameters:
