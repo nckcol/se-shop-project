@@ -1,0 +1,443 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0-acterics-shop"
+  title: Mixit API
+servers:
+  - url: 'https://mixit-api.prismsolutions.ru/v1'
+paths:
+  '/products/category/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Slug of the category
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      operationId: GetCategory
+      summary: Get Category
+      parameters:
+        - name: filter
+          in: query
+          description: Filter options
+          schema:
+            type: array
+        - name: sort
+          in: query
+          description: Sorting parameter
+          schema:
+            type: string
+        - name: order
+          in: query
+          description: Sorting order
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Сategory response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/Category"
+        '404':
+          description: Сategory not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/products/details/{slug}':
+    parameters:
+      - name: slug
+        in: path
+        description: Slug of the product
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      summary: Product details
+      description: Returns product details for product with given product slug
+      responses:
+        '200':
+          description: Success response with product details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductDetails"
+        '404':
+          description: Not found product with given slug
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/products/{slug}':
+    parameters:
+      - name: slug
+        in: path
+        description: Slug of the product
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      summary: Product
+      description: Return base product information for given product slug
+      responses:
+        '200':
+          description: Success response with product information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        '404':
+          description: Not found product with given slug
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/cart':
+    get:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Cart
+      description: Return product list in user's cart
+      responses:
+        '200':
+          description: Success cart response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    type: object
+  '/cart/product/{slug}':
+    parameters:
+      - 
+        name: slug
+        in: path
+        description: Slug of the product in cart
+        required: true
+        schema:
+          type: string
+    post:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Add product to cart
+      responses:
+        '200':
+          description: Success product adding to cart
+    delete:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Delete product from cart
+      responses:
+        '200':
+          description: Success product deleting from cart
+    put:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Change product count in cart
+      responses:
+        '200':
+          description: Success product count changing in cart
+  '/order/':
+    post:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      tags:
+        - ordering
+      summary: Place order
+      responses:
+        '200':
+          description: Success order placing
+    get:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Orders list
+      responses:
+        '200':
+          description: Success return orders list for user
+  '/order/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Order identifier
+        required: true
+        schema:
+          type: integer
+    get:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Order
+      responses:
+        '200':
+          description: Success return order details for user
+  '/order/delivery/':
+    get:
+      tags:
+        - ordering
+      summary: Delivery methods
+      description: Return list of delivery methods filtered by cities
+      parameters:
+        - name: city
+          in: query
+          description: Filter delivery methods by city
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+  '/order/delivery/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Delivery method identifier
+        required: true
+        schema:
+          type: integer
+    get:
+      tags:
+        - ordering
+      summary: Delivery method details
+      description: Return delivery method details
+      responses:
+        '200':
+          description: Success
+      
+components:
+  schemas:
+    Category:
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/Product"
+        filters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Filter"
+    Product:
+      description: Product schema
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Internal product name
+        title:
+          type: string
+          description: External product name
+        description:
+          type: string
+          description: Product description
+        category_id:
+          type: string
+          description: Category identifier product belong to
+        sku:
+          type: string
+          description: Product stock keep unit
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/Media"
+          description: Product images and videos
+        price:
+          type: integer
+          description: Product price information 
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterOption'
+        in_basket:
+          type: boolean
+          description: Shows if product in authorized user's basket 
+        in_favorite:
+          type: boolean
+          description: Shows if product in authorized user's favorite list
+        create_date:
+          type: string
+          format: date
+          description: Shows date when product created. Format ISO 8601 YYYY-MM-DD
+    
+    ProductDetails:
+      description: Product description schema
+      properties:
+        about:
+          type: string
+          description: Extended product description
+        properties:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Filter"
+          description: Product properties grouped by property types
+        rating: 
+          type: number
+          format: float
+          description: Product rating
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+    Filter:
+      description: Product filter
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Internal filter name
+        title:
+          type: string
+          description: External filter name
+        descrition:
+          type: string
+          description: Filter description
+        multiple:
+          type: boolean
+          description: >-
+            Is there opportunity to select several options
+            from this filter
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/FilterOption"
+          description: Options for this filter
+    FilterOption:
+      description: Filter option
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+          description: Internal filter option name
+        title: 
+          type: string
+          description: External filter option name
+          
+    Review:
+      description: Product review schema
+      properties:
+        name:
+          type: string
+        media:
+          $ref: "#/components/schemas/Media"
+        rating:
+          type: number
+          format: float
+        content:
+          type: string
+    Media:
+      properties:
+        fallback:
+          type: string
+          description: Fallback source information for size
+        main:
+          type: string
+          description: Main source information for size
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
