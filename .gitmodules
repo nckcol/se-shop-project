@@ -1,6 +1,6 @@
 [submodule "se-shop-android"]
 	path = se-shop-android
 	url = https://github.com/acterics/se-shop-android.git
-[submodule "se-shop-server"]
-	path = se-shop-server
+[submodule "se-shop-backend"]
+	path = se-shop-backend
 	url = https://github.com/EnviousSwan/se-shop-backend
