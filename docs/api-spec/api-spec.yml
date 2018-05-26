@@ -148,6 +148,17 @@ paths:
                     default: 200
                   data:
                     type: object
+                    properties:
+                      cart:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            count:
+                              type: integer
+                              description: Count of product in cart
+                            product:
+                              $ref: "#/components/schemas/Product"
   '/cart/product/{slug}':
     parameters:
       - 
@@ -215,6 +226,8 @@ paths:
       responses:
         '200':
           description: Success order placing
+
+
     get:
       parameters:
         - name: token
@@ -347,7 +360,6 @@ components:
           type: string
           format: date
           description: Shows date when product created. Format ISO 8601 YYYY-MM-DD
-    
     ProductDetails:
       description: Product description schema
       properties:
