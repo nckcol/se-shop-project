@@ -59,7 +59,7 @@ paths:
                     default: 404
                   message:
                     type: string
-  '/products/details/{slug}':
+  '/products/{slug}/details':
     parameters:
       - name: slug
         in: path
