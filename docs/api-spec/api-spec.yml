@@ -289,7 +289,7 @@ paths:
                     default: 404
                   message:
                     type: string
-  '/order/':
+  '/orders/':
     post:
       parameters:
         - name: token
@@ -325,7 +325,7 @@ paths:
       responses:
         '200':
           description: Success return orders list for user
-  '/order/{id}':
+  '/orders/{id}':
     parameters:
       - name: id
         in: path
@@ -347,7 +347,7 @@ paths:
       responses:
         '200':
           description: Success return order details for user
-  '/order/delivery/':
+  '/orders/delivery/':
     get:
       tags:
         - ordering
@@ -362,7 +362,7 @@ paths:
       responses:
         '200':
           description: Success
-  '/order/delivery/{id}':
+  '/orders/delivery/{id}':
     parameters:
       - name: id
         in: path
