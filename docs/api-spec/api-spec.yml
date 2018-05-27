@@ -606,12 +606,9 @@ components:
         description:
           type: string
           description: Product description
-        category_id:
+        categoryId:
           type: string
           description: Category identifier product belong to
-        sku:
-          type: string
-          description: Product stock keep unit
         media:
           type: array
           items:
@@ -624,13 +621,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilterOption'
-        in_basket:
+        inCart:
           type: boolean
-          description: Shows if product in authorized user's basket 
-        in_favorite:
+          description: Shows if product in authorized user's cart
+        inFavourite:
           type: boolean
           description: Shows if product in authorized user's favorite list
-        create_date:
+        createDate:
           type: string
           format: date
           description: Shows date when product created. Format ISO 8601 YYYY-MM-DD
