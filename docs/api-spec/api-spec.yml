@@ -141,6 +141,7 @@ paths:
         - name: token
           in: header
           description: User authentication token
+          required: true
           schema:
             type: string
       tags:
@@ -185,6 +186,7 @@ paths:
         - name: token
           in: header
           description: User authentication token
+          required: true
           schema:
             type: string
       tags:
@@ -218,6 +220,7 @@ paths:
         - name: token
           in: header
           description: User authentication token
+          required: true
           schema:
             type: string
       tags:
@@ -251,8 +254,15 @@ paths:
         - name: token
           in: header
           description: User authentication token
+          required: true
           schema:
             type: string
+        - name: count
+          in: query
+          description: New quantity of products in cart
+          required: true
+          schema:
+            type: integer
       tags:
         - ordering
       summary: Change product count in cart
@@ -285,6 +295,7 @@ paths:
         - name: token
           in: header
           description: User authentication token
+          required: true
           schema:
             type: string
       requestBody:
