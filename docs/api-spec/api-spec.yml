@@ -78,7 +78,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ProductDetails"
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/ProductDetails"
         '404':
           description: Not found product with given slug
           content:
@@ -110,7 +116,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Product"
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/Product"
         '404':
           description: Not found product with given slug
           content:
