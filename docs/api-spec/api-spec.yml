@@ -5,6 +5,25 @@ info:
 servers:
   - url: 'https://mixit-api.prismsolutions.ru/v1'
 paths:
+  '/categories':
+    get:
+      tags:
+        - product
+      operationId: GetCategories
+      summary: Get Categories
+      responses:
+        '200':
+          description: Success return category list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Category"
+          
   '/products/category/{id}':
     parameters:
       - name: id
