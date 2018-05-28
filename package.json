@@ -7,12 +7,14 @@
   },
   "dependencies": {
     "gulp": "^4.0.0",
-    "remarkable": "^1.7.1"
+    "remarkable": "^1.7.1",
+    "redoc-cli": "^0.3.8"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-docs": "gulp buildDocs"
+    "build-docs": "gulp buildDocs",
+    "start-swagger": "redoc-cli serve ./docs/api-spec/api-spec.yml --watch"
   },
   "author": "",
   "license": "ISC"
