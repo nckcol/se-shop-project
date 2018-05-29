@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  version: "1.0.0-acterics-shop"
-  title: Mixit API
+  version: "1.0.0"
+  title: RTFMarket API
 servers:
-  - url: 'https://mixit-api.prismsolutions.ru/v1'
+  - url: 'http://localhost:8081'
 paths:
   '/categories':
     get:
