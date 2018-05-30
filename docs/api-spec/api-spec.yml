@@ -43,6 +43,8 @@ paths:
           description: Filter options
           schema:
             type: array
+            items:
+               type: string
         - name: sort
           in: query
           description: Sorting parameter
@@ -379,7 +381,8 @@ paths:
           description: Product cost
           required: true
           schema:
-            type: double
+            type: number
+            format: double
             example: 100
         - name: amount
           in: query
@@ -413,7 +416,8 @@ paths:
                     type: object
                     properties:
                       price:
-                        type: double
+                        type: number
+                        format: double
                       expectedArrivalTime:
                         type: object
                         properties:
@@ -766,7 +770,7 @@ paths:
                   message:
                     type: string
   '/user/login':
-    get:
+    post:
       tags:
         - user
       summary: Logs user into the system
