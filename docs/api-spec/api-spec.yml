@@ -453,7 +453,8 @@ paths:
                 amount:
                   type: integer
                 cost:
-                  type: double
+                  type: number
+                  format: double
       tags:
         - ordering
       summary: Create delivery
