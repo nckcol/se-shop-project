@@ -427,9 +427,7 @@ paths:
                             type: string
                             example: "Europe/Kiev"
                   message:
-                    type: array
-                    items:
-                      type: string
+                    type: string
         '400':
           description: Request parameters are not specified or wrong
           content:
@@ -441,9 +439,7 @@ paths:
                     type: integer
                     default: 400
                   message:
-                    type: array
-                    items:
-                      type: string
+                    type: string
     post:
       requestBody:
         content:
@@ -488,9 +484,7 @@ paths:
                     type: integer
                     default: 400
                   message:
-                    type: array
-                    items:
-                      type: string
+                    type: string
   '/delivery/{id}':
     parameters:
       - name: id
@@ -569,10 +563,8 @@ paths:
                     type: integer
                     default: 400
                   message:
-                    type: array
-                    items:
-                      type: string
-                      example: "Missing 'city' param to complete list cities request"
+                    type: string
+                    example: "Missing 'city' param to complete list cities request"
   '/delivery/warehouses/':
     get:
       parameters:
@@ -610,10 +602,8 @@ paths:
                     type: integer
                     default: 400
                   message:
-                    type: array
-                    items:
-                      type: string
-                      example: "Missing 'cityRef' param to complete list cities request"
+                    type: string
+                    example: "Missing 'cityRef' param to complete list cities request"
 
   '/user':
     post:
