@@ -398,7 +398,6 @@ paths:
         '200':
           description: Success
 
-
   '/user':
     post:
       tags:
@@ -408,7 +407,15 @@ paths:
       operationId: createUser
       responses:
         '200':
-          description: successful operation
+          description: Successfully created new user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
         '400':
           description: User with such email already exists
           content:
@@ -448,7 +455,7 @@ paths:
                   description: The password for login in clear text
       responses:
         '200':
-          description: successful operation
+          description: Successfully logged in
           headers:
             Set-Authorization:
               description: User authorization token
@@ -457,7 +464,11 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
         '400':
           description: Invalid username/password supplied
           content:
@@ -478,11 +489,15 @@ paths:
       operationId: logoutUser
       responses:
         '200':
-          description: successful operation
+          description: Successfully logged out
           content:
             application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
   '/user/{id}':
     get:
       tags:
@@ -498,7 +513,7 @@ paths:
             type: string
       responses:
         '200':
-          description: successful operation
+          description: User successfully returned
           content:
             application/json:
               schema:
