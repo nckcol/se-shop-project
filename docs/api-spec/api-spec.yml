@@ -328,8 +328,6 @@ paths:
       responses:
         '200':
           description: Success order placing
-
-
     get:
       parameters:
         - name: token
@@ -366,29 +364,146 @@ paths:
       responses:
         '200':
           description: Success return order details for user
-  '/orders/delivery/':
+  # '/orders/delivery/{id}':
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: Delivery method identifier
+  #       required: true
+  #       schema:
+  #         type: integer
+  #   get:
+  #     tags:
+  #       - ordering
+  #     summary: Delivery method details
+  #     description: Return delivery method details
+  #     responses:
+  #       '200':
+  #         description: Success
+  'delivery/':
     get:
-      tags:
-        - ordering
-      summary: Delivery methods
-      description: Return list of delivery methods filtered by cities
       parameters:
-        - name: city
+        - name: city_recipient_ref
           in: query
-          description: Filter delivery methods by city
+          description: City reference
+          required: true
           schema:
             type: string
+            example: "8d5a980d-391c-11dd-90d9-001a92567626"
+        - name: cost
+          in: query
+          description: Product cost
+          required: true
+          schema:
+            type: string
+            example: "100"
+        - name: amount
+          in: query
+          description: Amount of packages/places
+          required: true
+          schema:
+            type: string
+            example: "2"
+        - name: date
+          in: query
+          description: City reference
+          required: true
+          schema:
+            type: string
+            example: "31.05.2018"
+      tags:
+        - ordering
+      summary: Get delivery info (price, expected date)
       responses:
         '200':
-          description: Success
-  '/orders/delivery/{id}':
+          description: Success return cities for city by name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: 
+                    type: object
+                    properties:
+                      price:
+                        type: double
+                      expected_arrival_time:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                            example: "2018-06-01 00:00:00.000000"
+                          timezone_type:
+                            type: string
+                            example: 3
+                          timezone:
+                            type: string
+                            example: "Europe/Kiev"
+                  errors:
+                    type: array
+                    items:
+                      type: string
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+    post:
+      parameters:
+        - name: token
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                city_recipient_ref:
+                  type: string
+                  example: "8d5a980d-391c-11dd-90d9-001a92567626"
+                amount:
+                  type: integer
+                cost:
+                  type: integer
+      tags:
+        - ordering
+      summary: Create delivery
+      responses:
+        '200':
+          description: Success created delivery
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+        '400':
+          description: Request body or parameters are incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      type: string
+  'delivery/{id}':
     parameters:
       - name: id
         in: path
         description: Delivery method identifier
         required: true
         schema:
-          type: integer
+          type: string
     get:
       tags:
         - ordering
@@ -396,7 +511,117 @@ paths:
       description: Return delivery method details
       responses:
         '200':
-          description: Success
+          description: Success getting delivery status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  delivery_status: 
+                    type: string
+                    example: "delivered"
+        '404':
+          description: Delivery with specified id was not found 
+  'delivery/cities/':
+    get:
+      parameters:
+        - name: city
+          in: query
+          description: City name or starting letters of the city
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Nova poshta available city list
+      responses:
+        '200':
+          description: Success return cities for city by name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  TotalCount:
+                    type: integer
+                    example: 2
+                  Addresses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Address"
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "Missing 'city' param to complete list cities request"
+  'delivery/warehouses/':
+    get:
+      parameters:
+        - name: city_ref
+          in: query
+          description: City reference
+          required: true
+          schema:
+            type: string
+            example: "8d5a980d-391c-11dd-90d9-001a92567626"
+      tags:
+        - ordering
+      summary: Nova poshta available warehouses list
+      responses:
+        '200':
+          description: Success return warehouses for city_ref
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Warehouses"
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: "Missing 'city_ref' param to complete list cities request"
+
+
+  # '/orders/{id}/delivery/nova-poshta/delivery-price':
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: Order identifier
+  #       required: true
+  #       schema:
+  #         type: integer
+  #   get:
+  #     tags:
+  #       - ordering
+  #     summary: Delivery price details
+  #     description: Return price of a delivery using Nova Poshta
+  #     responses:
+  #       '200':
+  #         description: Success return price details
+  # '/orders/{id}/delivery/nova-poshta/delivery-date':
+  #   parameters:
+  #     - name: id
+  #       in: path
+  #       description: Order identifier
+  #       required: true
+  #       schema:
+  #         type: integer
+  #   get:
+  #     tags:
+  #       - ordering
+  #     summary: Delivery date details
+  #     description: Return date of an expected delivery using Nova Poshta
+  #     responses:
+  #       '200':
+  #         description: Success return expected delivery date details
 
 
   '/user':
@@ -766,3 +991,170 @@ components:
           type: string
         address:
           type: string
+    Address:
+      type: object
+      properties:
+        Present: 
+          type: string
+          example: "м. Київ, Київська обл."
+        Warehouses: 
+          type: integer
+          example: 581
+        MainDescription":
+          type: string
+          example: "Київ"
+        Area: 
+          type: string
+          example: "Київська"
+        Region:
+          type: string
+        SettlementTypeCode:
+          type: string
+          example: "м."
+        Ref: 
+          type: string
+          example: "e718a680-4b33-11e4-ab6d-005056801329"
+        DeliveryCity:
+          type: string
+          example: "8d5a980d-391c-11dd-90d9-001a92567626"
+        StreetsAvailability:
+          type: boolean
+          example: true
+        ParentRegionTypes:
+          type: string
+          example: "область"
+        ParentRegionCode: 
+          type: string
+          example: "обл."
+        RegionTypes:
+          type: string
+        RegionTypesCode:
+          type: string
+    Warehouses:
+      type: array
+      items:
+        type: object
+        properties:
+          SiteKey:
+            type: string
+            example: "105"  
+          Description:
+            type: string
+            example: "Відділення №1: вул. Пирогівський шлях, 135"
+          DescriptionRu:
+            type: string
+            example: "Отделение №1: ул. Пироговский путь, 135"
+          ShortAddress:
+            type: string
+            example: "Київ, Пирогівський шлях, 135"
+          ShortAddressRu:
+            type: string
+            example: "Киев, Пироговский путь, 135"
+          Phone: 
+            type: string
+            example: "0-800-500-609"
+          TypeOfWarehouse: 
+            type: string
+            example: "9a68df70-0267-42a8-bb5c-37f427e36ee4"
+          Ref:
+            type: string
+            example: "1ec09d88-e1c2-11e3-8c4a-0050568002cf"
+          Number:
+            type: integer
+            example: 1
+          CityRef: 
+            type: string
+            example: "8d5a980d-391c-11dd-90d9-001a92567626"
+          CityDescription: 
+            type: string
+            example: "Київ"
+          CityDescriptionRu:
+            type: string
+            example: "Киев"
+          Longitude: 
+            type: double
+            example: 30.542884000000000
+          Latitude: 
+            type: double
+            example: 50.354786000000000
+          PostFinance: 
+            type: string
+            example: "1"
+          BicycleParking: 
+            type: string
+            example: "1"
+          PaymentAccess: 
+            type: string
+            example: "0"
+          POSTerminal: 
+            type: string
+            example: "0"
+          InternationalShipping: 
+            type: string
+            example: "1"
+          TotalMaxWeightAllowed: 
+            type: integer 
+            example: 0
+          PlaceMaxWeightAllowed: 
+            type: integer 
+            example: 0
+          Reception:
+            type: object
+            properties:
+              Monday:
+                type: string
+                example: "08:00-23:00"
+              Tuesday:
+                type: string
+              Wednesday:
+                type: string
+              Thursday:
+                type: string
+              Friday:
+                type: string
+              Saturday:
+                type: string
+              Sunday:
+                type: string
+          Delivery:
+            type: object
+            properties:
+              Monday:
+                type: string
+                example: "08:00-23:00"
+              Tuesday:
+                type: string
+              Wednesday:
+                type: string
+              Thursday:
+                type: string
+              Friday:
+                type: string
+              Saturday:
+                type: string
+              Sunday:
+                type: string
+          Schedule:
+            type: object
+            properties:
+              Monday:
+                type: string
+                example: "08:00-23:00"
+              Tuesday:
+                type: string
+              Wednesday:
+                type: string
+              Thursday:
+                type: string
+              Friday:
+                type: string
+              Saturday:
+                type: string
+              Sunday:
+                type: string
+          DistrictCode: 
+            type: string
+            example: "1 ск1"
+          WarehouseStatus: 
+            type: string
+            example: "Working"
