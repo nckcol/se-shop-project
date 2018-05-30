@@ -49,12 +49,19 @@ paths:
           in: query
           description: Sorting parameter
           schema:
-            type: string
+            type: string   
+            enum: 
+              - sort/PRICE
+              - sort/DATE
+              - sort/RATING
+            default: sort/DATE
         - name: order
           in: query
           description: Sorting order
           schema:
             type: string
+            enum: [ASC, DESC]
+            default: ASC
       responses:
         '200':
           description: Сategory response
