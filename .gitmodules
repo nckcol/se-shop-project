@@ -7,3 +7,6 @@
 [submodule "se-shop-frontend"]
 	path = se-shop-frontend
 	url = https://github.com/nckcol/se-shop-frontend.git
+[submodule "se-shop-external-api-integration"]
+	path = se-shop-external-api-integration
+	url = https://github.com/rickskyy/se-shop-external-api-integration
