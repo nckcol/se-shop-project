@@ -1,9 +1,9 @@
 openapi: 3.0.0
 info:
-  version: "1.0.0-acterics-shop"
-  title: Mixit API
+  version: "1.0.0"
+  title: RTFMarket API
 servers:
-  - url: 'https://mixit-api.prismsolutions.ru/v1'
+  - url: 'http://localhost:8081'
 paths:
   '/categories':
     get:
@@ -157,7 +157,7 @@ paths:
   '/cart':
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -202,7 +202,7 @@ paths:
           type: string
     post:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -236,7 +236,7 @@ paths:
                     type: string
     delete:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -270,7 +270,7 @@ paths:
                     type: string
     put:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -311,7 +311,7 @@ paths:
   '/orders/':
     post:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -330,7 +330,7 @@ paths:
           description: Success order placing
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -352,7 +352,7 @@ paths:
           type: integer
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -623,7 +623,6 @@ paths:
   #       '200':
   #         description: Success return expected delivery date details
 
-
   '/user':
     post:
       tags:
@@ -633,7 +632,27 @@ paths:
       operationId: createUser
       responses:
         '200':
-          description: successful operation
+          description: Successfully created new user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
         '400':
           description: User with such email already exists
           content:
@@ -653,94 +672,25 @@ paths:
               $ref: '#/components/schemas/User'
         description: Created user object
         required: true
-  '/user/login':
     get:
       tags:
         - user
-      summary: Logs user into the system
-      operationId: loginUser
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                username:
-                  type: string
-                  description: The user name for login
-                password:
-                  type: string
-                  description: The password for login in clear text
-      responses:
-        '200':
-          description: successful operation
-          headers:
-            X-Expires-After:
-              description: date in UTC when token expires
-              schema:
-                type: string
-                format: date-time
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          description: Invalid username/password supplied
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    default: 400
-                  message:
-                    type: string
-  '/user/logout':
-    get:
-      tags:
-        - user
-      summary: Logs out current logged in user session
-      operationId: logoutUser
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: string
-  '/user/{id}':
-    get:
-      tags:
-        - user
-      summary: Get user by user name
+      summary: Get current user
       operationId: getUserByName
       parameters:
-        - name: id
-          in: path
-          description: The name that needs to be fetched. Use user1 for testing.
+        - name: Authorization
+          in: header
+          description: User authentication token
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: successful operation
+          description: User successfully returned
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-        '400':
-          description: Invalid user id supplied
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: integer
-                    default: 400
-                  message:
-                    type: string
         '404':
           description: User not found
           content:
@@ -756,19 +706,19 @@ paths:
     put:
       tags:
         - user
-      summary: Updated user
+      summary: Updates user
       description: This can only be done by the logged in user.
       operationId: updateUser
       parameters:
-        - name: id
-          in: path
-          description: name that need to be updated
+        - name: Authorization
+          in: header
+          description: User authentication token
           required: true
           schema:
             type: string
       responses:
-        '400':
-          description: Invalid user supplied
+        '200':
+          description: Successfully updated user
           content:
             application/json:
               schema:
@@ -776,9 +726,7 @@ paths:
                 properties:
                   status:
                     type: integer
-                    default: 400
-                  message:
-                    type: string
+                    default: 200
         '404':
           description: User not found
           content:
@@ -805,15 +753,15 @@ paths:
       description: This can only be done by the logged in user.
       operationId: deleteUser
       parameters:
-        - name: id
-          in: path
-          description: The name that needs
+        - name: Authorization
+          in: header
+          description: User authentication token
           required: true
           schema:
             type: string
       responses:
-        '400':
-          description: Invalid email supplied
+        '200':
+          description: Successfully deleted user
           content:
             application/json:
               schema:
@@ -821,9 +769,7 @@ paths:
                 properties:
                   status:
                     type: integer
-                    default: 400
-                  message:
-                    type: string
+                    default: 200
         '404':
           description: User not found
           content:
@@ -835,8 +781,89 @@ paths:
                     type: integer
                     default: 404
                   message:
-                    type: string          
-      
+                    type: string
+  '/user/login':
+    get:
+      tags:
+        - user
+      summary: Logs user into the system
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user name for login
+                password:
+                  type: string
+                  description: The password for login in clear text
+      responses:
+        '200':
+          description: Successfully logged in
+          headers:
+            Set-Authorization:
+              description: User authorization token
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+        '400':
+          description: Invalid username/password supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+  '/user/logout':
+    get:
+      tags:
+        - user
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
 components:
   schemas:
     Category:
