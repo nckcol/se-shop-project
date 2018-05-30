@@ -4,3 +4,6 @@
 [submodule "se-shop-backend"]
 	path = se-shop-backend
 	url = https://github.com/EnviousSwan/se-shop-backend
+[submodule "se-shop-frontend"]
+	path = se-shop-frontend
+	url = https://github.com/nckcol/se-shop-frontend.git
