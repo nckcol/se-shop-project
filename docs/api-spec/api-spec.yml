@@ -157,7 +157,7 @@ paths:
   '/cart':
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -202,7 +202,7 @@ paths:
           type: string
     post:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -236,7 +236,7 @@ paths:
                     type: string
     delete:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -270,7 +270,7 @@ paths:
                     type: string
     put:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -311,7 +311,7 @@ paths:
   '/orders/':
     post:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -332,7 +332,7 @@ paths:
 
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -354,7 +354,7 @@ paths:
           type: integer
     get:
       parameters:
-        - name: token
+        - name: Authorization
           in: header
           description: User authentication token
           required: true
@@ -450,11 +450,10 @@ paths:
         '200':
           description: successful operation
           headers:
-            X-Expires-After:
-              description: date in UTC when token expires
+            Set-Authorization:
+              description: User authorization token
               schema:
                 type: string
-                format: date-time
           content:
             application/json:
               schema:
