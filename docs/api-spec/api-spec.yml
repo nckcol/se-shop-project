@@ -364,22 +364,6 @@ paths:
       responses:
         '200':
           description: Success return order details for user
-  # '/orders/delivery/{id}':
-  #   parameters:
-  #     - name: id
-  #       in: path
-  #       description: Delivery method identifier
-  #       required: true
-  #       schema:
-  #         type: integer
-  #   get:
-  #     tags:
-  #       - ordering
-  #     summary: Delivery method details
-  #     description: Return delivery method details
-  #     responses:
-  #       '200':
-  #         description: Success
   'delivery/':
     get:
       parameters:
@@ -452,13 +436,6 @@ paths:
                 items:
                   type: string
     post:
-      parameters:
-        - name: token
-          in: header
-          description: User authentication token
-          required: true
-          schema:
-            type: string
       requestBody:
         content:
           application/json:
@@ -588,40 +565,6 @@ paths:
                 items:
                   type: string
                   example: "Missing 'city_ref' param to complete list cities request"
-
-
-  # '/orders/{id}/delivery/nova-poshta/delivery-price':
-  #   parameters:
-  #     - name: id
-  #       in: path
-  #       description: Order identifier
-  #       required: true
-  #       schema:
-  #         type: integer
-  #   get:
-  #     tags:
-  #       - ordering
-  #     summary: Delivery price details
-  #     description: Return price of a delivery using Nova Poshta
-  #     responses:
-  #       '200':
-  #         description: Success return price details
-  # '/orders/{id}/delivery/nova-poshta/delivery-date':
-  #   parameters:
-  #     - name: id
-  #       in: path
-  #       description: Order identifier
-  #       required: true
-  #       schema:
-  #         type: integer
-  #   get:
-  #     tags:
-  #       - ordering
-  #     summary: Delivery date details
-  #     description: Return date of an expected delivery using Nova Poshta
-  #     responses:
-  #       '200':
-  #         description: Success return expected delivery date details
 
   '/user':
     post:
