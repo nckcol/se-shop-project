@@ -1,0 +1,1052 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: RTFMarket API
+servers:
+  - url: 'http://localhost:8081'
+paths:
+  '/categories':
+    get:
+      tags:
+        - product
+      operationId: GetCategories
+      summary: Get Categories
+      responses:
+        '200':
+          description: Success return category list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Category"
+          
+  '/products/category/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Slug of the category
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      operationId: GetCategory
+      summary: Get Category
+      parameters:
+        - name: filter
+          in: query
+          description: Filter options
+          schema:
+            type: array
+            items:
+               type: string
+        - name: sort
+          in: query
+          description: Sorting parameter
+          schema:
+            type: string   
+            enum: 
+              - sort/PRICE
+              - sort/DATE
+              - sort/RATING
+            default: sort/DATE
+        - name: order
+          in: query
+          description: Sorting order
+          schema:
+            type: string
+            enum: [ASC, DESC]
+            default: ASC
+      responses:
+        '200':
+          description: Сategory response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/Category"
+        '404':
+          description: Сategory not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/products/{slug}/details':
+    parameters:
+      - name: slug
+        in: path
+        description: Slug of the product
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      summary: Product details
+      description: Returns product details for product with given product slug
+      responses:
+        '200':
+          description: Success response with product details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/ProductDetails"
+        '404':
+          description: Not found product with given slug
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/products/{slug}':
+    parameters:
+      - name: slug
+        in: path
+        description: Slug of the product
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - product
+      summary: Product
+      description: Return base product information for given product slug
+      responses:
+        '200':
+          description: Success response with product information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/Product"
+        '404':
+          description: Not found product with given slug
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/cart':
+    get:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Cart
+      description: Return product list in user's cart
+      responses:
+        '200':
+          description: Success cart response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    type: object
+                    properties:
+                      cart:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            count:
+                              type: integer
+                              description: Count of product in cart
+                            product:
+                              $ref: "#/components/schemas/Product"
+  '/cart/product/{slug}':
+    parameters:
+      - 
+        name: slug
+        in: path
+        description: Slug of the product in cart
+        required: true
+        schema:
+          type: string
+    post:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Add product to cart
+      responses:
+        '200':
+          description: Success product adding to cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: Product with given slug not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+    delete:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Delete product from cart
+      responses:
+        '200':
+          description: Success product deleting from cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: Product with given slug not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+    put:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+        - name: count
+          in: query
+          description: New quantity of products in cart
+          required: true
+          schema:
+            type: integer
+      tags:
+        - ordering
+      summary: Change product count in cart
+      responses:
+        '200':
+          description: Success product count changing in cart
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: Product with given slug not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/orders/':
+    post:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      tags:
+        - ordering
+      summary: Place order
+      responses:
+        '200':
+          description: Success order placing
+    get:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Orders list
+      responses:
+        '200':
+          description: Success return orders list for user
+  '/orders/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Order identifier
+        required: true
+        schema:
+          type: integer
+    get:
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Order
+      responses:
+        '200':
+          description: Success return order details for user
+  '/delivery/':
+    get:
+      parameters:
+        - name: cityRecipientRef
+          in: query
+          description: City reference
+          required: true
+          schema:
+            type: string
+            example: "8d5a980d-391c-11dd-90d9-001a92567626"
+        - name: cost
+          in: query
+          description: Product cost
+          required: true
+          schema:
+            type: number
+            format: double
+            example: 100
+        - name: amount
+          in: query
+          description: Amount of packages/places
+          required: true
+          schema:
+            type: integer
+            example: 2
+        - name: date
+          in: query
+          description: City reference
+          required: true
+          schema:
+            type: string
+            example: "31.05.2018"
+      tags:
+        - ordering
+      summary: Get delivery info (price, expected date)
+      responses:
+        '200':
+          description: Success return cities for city by name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data: 
+                    type: object
+                    properties:
+                      price:
+                        type: number
+                        format: double
+                      expectedArrivalTime:
+                        type: object
+                        properties:
+                          date:
+                            type: string
+                            example: "2018-06-01 00:00:00.000000"
+                          timezoneType:
+                            type: string
+                            example: 3
+                          timezone:
+                            type: string
+                            example: "Europe/Kiev"
+                  message:
+                    type: string
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouseRecipientRef:
+                  type: string
+                  example: "8d5a980d-391c-11dd-90d9-001a92567626"
+                amount:
+                  type: integer
+                cost:
+                  type: number
+                  format: double
+      tags:
+        - ordering
+      summary: Create delivery
+      responses:
+        '200':
+          description: Success created delivery
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+        '400':
+          description: Request body or parameters are incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+  '/delivery/{id}':
+    parameters:
+      - name: id
+        in: path
+        description: Delivery method identifier
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - ordering
+      summary: Delivery method details
+      description: Return delivery method details
+      responses:
+        '200':
+          description: Success getting delivery status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    type: object
+                    properties:
+                      deliveryStatus: 
+                        type: string
+                        example: "delivered"
+        '404':
+          description: Delivery with specified id was not found 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+  '/delivery/cities/':
+    get:
+      parameters:
+        - name: city
+          in: query
+          description: City name or starting letters of the city
+          required: true
+          schema:
+            type: string
+      tags:
+        - ordering
+      summary: Nova poshta available city list
+      responses:
+        '200':
+          description: Success return cities for city by name
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Address"
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+                    example: "Missing 'city' param to complete list cities request"
+  '/delivery/warehouses/':
+    get:
+      parameters:
+        - name: cityRef
+          in: query
+          description: City reference
+          required: true
+          schema:
+            type: string
+            example: "8d5a980d-391c-11dd-90d9-001a92567626"
+      tags:
+        - ordering
+      summary: Nova poshta available warehouses list
+      responses:
+        '200':
+          description: Success return warehouses for cityRef
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+                  data:
+                    $ref: "#/components/schemas/Warehouses"
+        '400':
+          description: Request parameters are not specified or wrong
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+                    example: "Missing 'cityRef' param to complete list cities request"
+
+  '/user':
+    post:
+      tags:
+        - user
+      summary: Create user
+      description: Registers new user in the system
+      operationId: createUser
+      responses:
+        '200':
+          description: Successfully created new user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+        '400':
+          description: User with such email already exists
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Created user object
+        required: true
+    get:
+      tags:
+        - user
+      summary: Get current user
+      operationId: getUserByName
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: User successfully returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+    put:
+      tags:
+        - user
+      summary: Updates user
+      description: This can only be done by the logged in user.
+      operationId: updateUser
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully updated user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: Updated user object
+        required: true
+    delete:
+      tags:
+        - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully deleted user
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+  '/user/login':
+    post:
+      tags:
+        - user
+      summary: Logs user into the system
+      operationId: loginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user name for login
+                password:
+                  type: string
+                  description: The password for login in clear text
+      responses:
+        '200':
+          description: Successfully logged in
+          headers:
+            Set-Authorization:
+              description: User authorization token
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 404
+                  message:
+                    type: string
+        '400':
+          description: Invalid username/password supplied
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 400
+                  message:
+                    type: string
+  '/user/logout':
+    get:
+      tags:
+        - user
+      parameters:
+        - name: Authorization
+          in: header
+          description: User authentication token
+          required: true
+          schema:
+            type: string
+      summary: Logs out current logged in user session
+      operationId: logoutUser
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    default: 200
+components:
+  schemas:
+    Category:
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        products:
+          type: array
+          items:
+            $ref: "#/components/schemas/Product"
+        filters:
+          type: array
+          items:
+            $ref: "#/components/schemas/Filter"
+    Product:
+      description: Product schema
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Internal product name
+        title:
+          type: string
+          description: External product name
+        description:
+          type: string
+          description: Product description
+        categoryId:
+          type: string
+          description: Category identifier product belong to
+        media:
+          type: array
+          items:
+            $ref: "#/components/schemas/Media"
+          description: Product images and videos
+        price:
+          type: integer
+          description: Product price information 
+        properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/FilterOption'
+        inCart:
+          type: boolean
+          description: Shows if product in authorized user's cart
+        inFavourite:
+          type: boolean
+          description: Shows if product in authorized user's favorite list
+        createDate:
+          type: string
+          format: date
+          description: Shows date when product created. Format ISO 8601 YYYY-MM-DD
+    ProductDetails:
+      description: Product description schema
+      properties:
+        about:
+          type: string
+          description: Extended product description
+        properties:
+          type: array
+          items: 
+            $ref: "#/components/schemas/Filter"
+          description: Product properties grouped by property types
+        rating: 
+          type: number
+          format: float
+          description: Product rating
+        reviews:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+    Filter:
+      description: Product filter
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+          description: Internal filter name
+        title:
+          type: string
+          description: External filter name
+        descrition:
+          type: string
+          description: Filter description
+        multiple:
+          type: boolean
+          description: >-
+            Is there opportunity to select several options
+            from this filter
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/FilterOption"
+          description: Options for this filter
+    FilterOption:
+      description: Filter option
+      properties:
+        id: 
+          type: integer
+        name: 
+          type: string
+          description: Internal filter option name
+        title: 
+          type: string
+          description: External filter option name
+          
+    Review:
+      description: Product review schema
+      properties:
+        name:
+          type: string
+        media:
+          $ref: "#/components/schemas/Media"
+        rating:
+          type: number
+          format: float
+        content:
+          type: string
+    Media:
+      properties:
+        fallback:
+          type: string
+          description: Fallback source information for size
+        main:
+          type: string
+          description: Main source information for size
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        phone:
+          type: string
+        address:
+          type: string
+    Address:
+      type: object
+      properties:
+        present: 
+          type: string
+          example: "м. Київ, Київська обл."
+        mainDescription:
+          type: string
+          example: "Київ"
+        area: 
+          type: string
+          example: "Київська"
+        settlementTypeCode:
+          type: string
+          example: "м."
+        parentRegionTypes:
+          type: string
+          example: "область"
+        parentRegionCode: 
+          type: string
+          example: "обл."
+        deliveryCity:
+          type: string
+          example: "8d5a980d-391c-11dd-90d9-001a92567626"
+    Warehouses:
+      type: array
+      items:
+        type: object
+        properties: 
+          description:
+            type: string
+            example: "Відділення №1: вул. Пирогівський шлях, 135"
+          shortAddress:
+            type: string
+            example: "Київ, Пирогівський шлях, 135"
+          ref:
+            type: string
+            example: "1ec09d88-e1c2-11e3-8c4a-0050568002cf"
