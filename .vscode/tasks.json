@@ -1,0 +1,53 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "build-docs",
+            "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "start-swagger",
+            "problemMatcher": []
+        },
+        {
+            "label": "run-backend",
+            "type": "shell",
+            "command": "cd se-shop-backend && sbt run",
+            "problemMatcher": []
+        },
+        {
+            "label": "run-frontend",
+            "type": "shell",
+            "command": "cd se-shop-frontend && npm run start",
+            "problemMatcher": []
+        },
+        {
+            "label": "integrations-init-venv",
+            "type": "shell",
+            "command": "cd se-shop-external-api-integration && python3 -m venv ./venv",
+            "problemMatcher": []
+        },
+        {
+            "label": "integrations-install-requirements",
+            "type": "shell",
+            "command": "cd se-shop-external-api-integration && ./venv/bin/pip install -r requirements.txt",
+            "problemMatcher": []
+        },
+        {
+            "label": "integrations-migrate",
+            "type": "shell",
+            "command": "cd se-shop-external-api-integration && ./venv/bin/python manage.py migrate",
+            "problemMatcher": []
+        },
+        {
+            "label": "run-integrations",
+            "type": "shell",
+            "command": "cd se-shop-external-api-integration && ./venv/bin/python manage.py runserver 0:8082",
+            "problemMatcher": []
+        }
+    ]
+}
